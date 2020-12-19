@@ -17,10 +17,10 @@ public class FruitComputeTaskRegistry {
         this.engine = engine;
     }
 
-	public void bindToRegistry() {
+    public void bindToRegistry() {
         try {
             LocateRegistry.createRegistry(1099);
-        } catch(RemoteException e) {
+        } catch (RemoteException e) {
             System.err.println("RMI registry already launched on this port");
             System.exit(1);
         }
@@ -32,7 +32,7 @@ public class FruitComputeTaskRegistry {
         } catch (RemoteException e) {
             System.err.println("Have you launched RMI registry already");
             System.exit(2);
-        } catch(MalformedURLException e) {
+        } catch (MalformedURLException e) {
             throw new InternalException("the URL is incorrect");
         }
     }
