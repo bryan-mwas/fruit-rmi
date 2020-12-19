@@ -1,2 +1,4 @@
 # Ingore build file with .class files
 out/
+/.idea/
+/fruit-service.iml

@@ -18,7 +18,7 @@ public class AddFruitPrice implements Task<ArrayList<Fruit>>, Serializable {
      }
 
     public ArrayList<Fruit> execute() {
-       return this.fruit.addFruitPrice(fruit);
+       return Fruit.addFruitPrice(fruit);
     }
     
 }

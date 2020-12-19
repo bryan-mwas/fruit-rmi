@@ -28,11 +28,16 @@ public class ClientTask {
 
         try {
             // Implements the task interface.
-            AddFruitPrice addFruitPrice = new AddFruitPrice(new Fruit("Banana", 10.0));
-            ArrayList<Fruit> fruits = task.executeTask(addFruitPrice);
-            System.out.println(fruits);
+            switch (args[0]) {
+                case "ADD" -> ClientService.addFruit(task);
+                case "UPDATE" -> ClientService.updateFruit(task);
+                case "DELETE" -> ClientService.deleteFruit(task);
+                case "TOTAL COST" -> ClientService.calculateTotalCost(task);
+                default -> ClientService.printReceipt(task);
+            }
         } catch (RemoteException e) {
             System.err.println("The server appears to be down");
+            System.err.println(e.getMessage());
         }
     }
 }

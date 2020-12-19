@@ -28,13 +28,36 @@ public class Fruit implements Serializable {
 
     @Override
     public String toString() {
-        return "\nname: "+ this.name + ", price: "+ this.price.toString();
+        return "\nname: " + this.name + ", price: " + this.price.toString();
     }
 
     // OPERATIONS
 
-    public ArrayList<Fruit> addFruitPrice(Fruit f) {
+    public static ArrayList<Fruit> getFruits() {
+        return FRUITS;
+    }
+
+    public static ArrayList<Fruit> addFruitPrice(Fruit f) {
         FRUITS.add(f);
         return FRUITS;
+    }
+
+    public static ArrayList<Fruit> updateFruitPrice(int index, Fruit f) {
+        FRUITS.set(index, f);
+        return FRUITS;
+    }
+
+    public static String deleteFruitPrice(int index) {
+        Fruit deleted = FRUITS.get(index);
+        FRUITS.remove(index);
+        return "DELETED: " + deleted.toString();
+    }
+
+    public static Double calFruitCost() {
+        Double cost = 0.00;
+        for (int i = 0; i < FRUITS.size(); i++) {
+            cost += FRUITS.get(i).price;
+        }
+        return cost;
     }
 }

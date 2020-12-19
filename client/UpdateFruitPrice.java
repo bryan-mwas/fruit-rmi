@@ -6,19 +6,20 @@ import java.util.ArrayList;
 import server.task.Task;
 
 public class UpdateFruitPrice implements Task<ArrayList<Fruit>>, Serializable {
-     /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
+   /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
 
-    private Fruit fruit;
+  private int index;
+  private Fruit fruit;
 
-    public UpdateFruitPrice (Fruit fruit) {
-       this.fruit = fruit;
-     }
+  public UpdateFruitPrice (int index, Fruit fruit) {
+     this.fruit = fruit;
+   }
 
-    public ArrayList<Fruit> execute() {
-       return this.fruit.addFruitPrice(fruit);
-    }
-    
+  public ArrayList<Fruit> execute() {
+     return Fruit.updateFruitPrice(index, fruit);
+  }
+  
 }
