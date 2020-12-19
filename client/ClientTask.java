@@ -1,10 +1,13 @@
 package client;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import server.task.TaskRemote;
 
@@ -27,12 +30,26 @@ public class ClientTask {
         }
 
         try {
+            // Prompt User to Choose a task
+            StringWriter stringWriter = new StringWriter();
+            PrintWriter printWriter = new PrintWriter(stringWriter);
+            printWriter.println("CHOOSE TASK");
+            printWriter.println("(1) ADD");
+            printWriter.println("(2) UPDATE");
+            printWriter.println("(3) DELETE");
+            printWriter.println("(4) TOTAL COST");
+            printWriter.println("(5) RECEIPT");
+            printWriter.println("Enter task number: ");
+            System.out.println(stringWriter.toString());
+
+            Scanner scanner = new Scanner(System.in);
+            int userInput = scanner.nextInt();
             // Implements the task interface.
-            switch (args[0]) {
-                case "ADD" -> ClientService.addFruit(task);
-                case "UPDATE" -> ClientService.updateFruit(task);
-                case "DELETE" -> ClientService.deleteFruit(task);
-                case "TOTAL COST" -> ClientService.calculateTotalCost(task);
+            switch (userInput) {
+                case 1 -> ClientService.addFruit(task);
+                case 2 -> ClientService.updateFruit(task);
+                case 3 -> ClientService.deleteFruit(task);
+                case 4 -> ClientService.calculateTotalCost(task);
                 default -> ClientService.printReceipt(task);
             }
         } catch (RemoteException e) {
