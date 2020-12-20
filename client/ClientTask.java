@@ -6,7 +6,6 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import server.task.TaskRemote;
@@ -28,8 +27,7 @@ public class ClientTask {
             System.err.println("Have you launched the server?");
             System.exit(2);
         }
-
-        try {
+        try (Scanner scanner = new Scanner(System.in)) {
             // Prompt User to Choose a task
             StringWriter stringWriter = new StringWriter();
             PrintWriter printWriter = new PrintWriter(stringWriter);
@@ -39,10 +37,8 @@ public class ClientTask {
             printWriter.println("(3) DELETE");
             printWriter.println("(4) TOTAL COST");
             printWriter.println("(5) RECEIPT");
-            printWriter.println("Enter task number: ");
-            System.out.println(stringWriter.toString());
-
-            Scanner scanner = new Scanner(System.in);
+            printWriter.print("Enter task number: ");
+            System.out.print(stringWriter.toString());
             int userInput = scanner.nextInt();
             // Implements the task interface.
             switch (userInput) {

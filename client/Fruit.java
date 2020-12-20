@@ -43,14 +43,24 @@ public class Fruit implements Serializable {
     }
 
     public static ArrayList<Fruit> updateFruitPrice(int index, Fruit f) {
-        FRUITS.set(index, f);
-        return FRUITS;
+        try {
+            FRUITS.set(index, f);
+            return FRUITS;
+        } catch (IndexOutOfBoundsException e) {
+            System.err.println("UPDATE: Fruit does not exist.");
+            return FRUITS;
+        }
     }
 
     public static String deleteFruitPrice(int index) {
-        Fruit deleted = FRUITS.get(index);
-        FRUITS.remove(index);
-        return "DELETED: " + deleted.toString();
+        try {
+            Fruit deleted = FRUITS.get(index);
+            FRUITS.remove(index);
+            return "DELETED: " + deleted.toString();
+        } catch (IndexOutOfBoundsException e) {
+            System.err.println("DELETE: Fruit does not exist.");
+            return "Fruit does not exist.";
+        }
     }
 
     public static Double calFruitCost() {

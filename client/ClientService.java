@@ -2,12 +2,18 @@ package client;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import server.task.TaskRemote;
 
 public class ClientService {
     public static void addFruit(TaskRemote task) throws RemoteException {
-        AddFruitPrice addFruitPrice = new AddFruitPrice(new Fruit("Banana", 10.0));
+        System.out.print("Enter fruit name: ");
+        Scanner sc = new Scanner(System.in);
+        String fruitName = sc.nextLine();
+        System.out.print("Enter fruit price: ");
+        Double fruitPrice = sc.nextDouble();
+        AddFruitPrice addFruitPrice = new AddFruitPrice(new Fruit(fruitName, fruitPrice));
         ArrayList<Fruit> fruits = task.executeTask(addFruitPrice);
         System.out.println(fruits);
     }
