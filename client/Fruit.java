@@ -10,7 +10,7 @@ public class Fruit implements Serializable {
      */
     private static final long serialVersionUID = 1L;
     public String name;
-    public Double price = 0.00;
+    public Double price;
     private static ArrayList<Fruit> FRUITS = new ArrayList<Fruit>();
 
     public Fruit(String name, Double price) {
